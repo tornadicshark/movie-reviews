@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import {
   Button,
   Card,
@@ -8,19 +8,20 @@ import {
   Grid,
   Typography,
   Rating,
+  Tooltip,
 } from "@mui/material";
 import StarRateIcon from "@mui/icons-material/StarRate";
 
-import PropTypes from 'prop-types';
-import { styled } from '@mui/material/styles';
-import SentimentVeryDissatisfiedIcon from '@mui/icons-material/SentimentVeryDissatisfied';
-import SentimentDissatisfiedIcon from '@mui/icons-material/SentimentDissatisfied';
-import SentimentSatisfiedIcon from '@mui/icons-material/SentimentSatisfied';
-import SentimentSatisfiedAltIcon from '@mui/icons-material/SentimentSatisfiedAltOutlined';
-import SentimentVerySatisfiedIcon from '@mui/icons-material/SentimentVerySatisfied';
+import PropTypes from "prop-types";
+import { styled } from "@mui/material/styles";
+import SentimentVeryDissatisfiedIcon from "@mui/icons-material/SentimentVeryDissatisfied";
+import SentimentDissatisfiedIcon from "@mui/icons-material/SentimentDissatisfied";
+import SentimentSatisfiedIcon from "@mui/icons-material/SentimentSatisfied";
+import SentimentSatisfiedAltIcon from "@mui/icons-material/SentimentSatisfiedAltOutlined";
+import SentimentVerySatisfiedIcon from "@mui/icons-material/SentimentVerySatisfied";
 
 const StyledRating = styled(Rating)(({ theme }) => ({
-  '& .MuiRating-iconEmpty .MuiSvgIcon-root': {
+  "& .MuiRating-iconEmpty .MuiSvgIcon-root": {
     color: theme.palette.action.disabled,
   },
 }));
@@ -28,23 +29,23 @@ const StyledRating = styled(Rating)(({ theme }) => ({
 const customIcons = {
   1: {
     icon: <SentimentVeryDissatisfiedIcon color="error" />,
-    label: 'Very Dissatisfied',
+    label: "Very Dissatisfied",
   },
   2: {
     icon: <SentimentDissatisfiedIcon color="error" />,
-    label: 'Dissatisfied',
+    label: "Dissatisfied",
   },
   3: {
     icon: <SentimentSatisfiedIcon color="warning" />,
-    label: 'Neutral',
+    label: "Neutral",
   },
   4: {
     icon: <SentimentSatisfiedAltIcon color="success" />,
-    label: 'Satisfied',
+    label: "Satisfied",
   },
   5: {
     icon: <SentimentVerySatisfiedIcon color="success" />,
-    label: 'Very Satisfied',
+    label: "Very Satisfied",
   },
 };
 
@@ -59,9 +60,18 @@ IconContainer.propTypes = {
 
 export default function MovieCard(props) {
   const [movie, setMovie] = useState(props.movie);
-  console.log(movie);
+  const [imageUrl, setImageUrl] = useState(
+    `https://source.unsplash.com/random?wallpapers`
+  );
+
+  useEffect(() => {
+    if (movie.poster_path) {
+      setImageUrl(`https://image.tmdb.org/t/p/w780/${movie.poster_path}`);
+    }
+  }, []);
+
   return (
-    <Grid item key={movie.id} xs={12} sm={6} md={4}>
+    <Grid item key={movie.id} xs={12} sm={3} md={2}>
       <Card
         sx={{
           height: "100%",
@@ -69,22 +79,17 @@ export default function MovieCard(props) {
           flexDirection: "column",
         }}
       >
+        <Tooltip title={movie.title}>
         <CardMedia
           component="div"
           sx={{
             // 16:9
-            pt: "56.25%",
+            pt: "133%",
           }}
-          image="https://source.unsplash.com/random?wallpapers"
+          image={imageUrl}
         />
+        </Tooltip>
         <CardContent sx={{ flexGrow: 1 }}>
-          <Typography gutterBottom variant="h5" component="h2">
-            {movie.title}
-          </Typography>
-          {/* <Typography>
-          <StarRateIcon fontSizeInherit htmlColor={'yellow'}/> {movie.vote_average} 
-          </Typography> */}
-          {/* <Rating name="half-rating-read" defaultValue={movie.vote_average} precision={.5} max={10} readOnly /> */}
           <StyledRating
             name="highlight-selected-only"
             defaultValue={Math.floor(movie.vote_average / 2)}
@@ -93,6 +98,13 @@ export default function MovieCard(props) {
             highlightSelectedOnly
             readOnly
           />
+          {/* <Typography gutterBottom variant="body2" component="h2">
+            {movie.title}
+          </Typography> */}
+          {/* <Typography>
+          <StarRateIcon fontSizeInherit htmlColor={'yellow'}/> {movie.vote_average} 
+          </Typography> */}
+          {/* <Rating name="half-rating-read" defaultValue={movie.vote_average} precision={.5} max={10} readOnly /> */}
           {/* <Typography>{movie.overview}</Typography> */}
         </CardContent>
         {/* <CardActions>

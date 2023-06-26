@@ -1,16 +1,9 @@
 import "./App.css";
 import * as React from "react";
 import AppBar from "@mui/material/AppBar";
-import Button from "@mui/material/Button";
-import TheatersIcon from '@mui/icons-material/Theaters';
-import CameraIcon from "@mui/icons-material/PhotoCamera";
-import Card from "@mui/material/Card";
-import CardActions from "@mui/material/CardActions";
-import CardContent from "@mui/material/CardContent";
-import CardMedia from "@mui/material/CardMedia";
+import TheatersIcon from "@mui/icons-material/Theaters";
 import CssBaseline from "@mui/material/CssBaseline";
 import Grid from "@mui/material/Grid";
-import Stack from "@mui/material/Stack";
 import Box from "@mui/material/Box";
 import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
@@ -19,17 +12,34 @@ import { createTheme, ThemeProvider } from "@mui/material/styles";
 
 // import app specific data
 import Copyright from "./components/Copyright";
-import MovieCard from './components/MovieCard'
+import MovieCard from "./components/MovieCard";
+import FeaturedMovie from "./components/FeaturedMovie";
 import data from "./data.json";
 
-const cards = [1, 2, 3, 4, 5, 6, 7, 8, 9];
+import { grey, deepPurple } from "@mui/material/colors";
 
 // TODO remove, this demo shouldn't need to reset the theme.
-const defaultTheme = createTheme();
+const movieTheme = createTheme({
+  palette: {
+    primary: {
+      light: grey[200],
+      main: grey[900],
+      dark: grey[900],
+      contrastText: grey[50],
+    },
+    secondary: {
+      light: deepPurple[500],
+      main: deepPurple[500],
+      dark: deepPurple[900],
+      contrastText: "#fff",
+    },
+  },
+});
 
 function App() {
-  const [genres, setGenres] = React.useState({});
-  const [movies, setMovies] = React.useState({});
+  const [genres, setGenres] = React.useState(new Array());
+  const [movies, setMovies] = React.useState(new Array());
+  const [upNext, setUpNext] = React.useState(new Array());
 
   React.useEffect(() => {
     /* Removed since API key is still pending... says NOT VALID */
@@ -40,18 +50,22 @@ function App() {
       },
     };
 
-    // fetch("https://api.themoviedb.org/3/authentication", options)
-    //   .then((response) => response.json())
-    //   .then((response) => console.log(response))
-    //   .catch((err) => console.error(err));
-    setMovies(data.movies);
+    fetch("https://api.themoviedb.org/3/authentication", options)
+      .then((response) => response.json())
+      .then((response) => console.log(response))
+      .catch((err) => console.error(err));
+
+    const movieData = data.movies.results;
+    setUpNext(movieData?.filter((x) => x.title === "Fake Horrible Movie"));
+    console.log(upNext);
+    setMovies(movieData?.filter((x) => x.title != "Fake Horrible Movie"));
     console.log(movies);
     setGenres(data.genres);
     console.log(genres);
   }, []);
 
   return (
-    <ThemeProvider theme={defaultTheme}>
+    <ThemeProvider theme={movieTheme}>
       <CssBaseline />
       <AppBar position="relative">
         <Toolbar>
@@ -65,36 +79,63 @@ function App() {
         {/* Hero unit */}
         <Box
           sx={{
-            bgcolor: "background.paper",
-            pt: 8,
+            // bgcolor: "background.paper",
+            backgroundColor: "background.paper",
+            p: 7,
           }}
         >
           <Container maxWidth="sm">
             <Typography variant="h6" align="center" paragraph>
               Is it a movie?... Yes... Kassandra has not seen it
             </Typography>
-            <Typography
-              align="center"
-              color="text.secondary"
-              paragraph
-            >
+            <Typography align="center" paragraph>
               Are you a movie fan? Well, Kassandra's family has a very simple
-              flow chart when asking if she has seen a movie.
+              flow chart when asking if she has seen a movie. Tune back in
+              weekly to see Kassandra's review on the cult classics.
             </Typography>
           </Container>
         </Box>
-        <Container sx={{ py: 8 }} maxWidth="md">
-          {/* End hero unit */}
+        <Box disableGutters sx={{ backgroundColor: "primary.light"}}>
+          <Grid
+            container
+            direction="row"
+            justifyContent="center"
+            alignContent="center"
+            spacing={4}
+            sx={{p: 4}}
+          >
+            <Grid item xs={12} sm={6}>
+              <Typography align="right" variant="h4" component="h1">
+                This Week's
+                Featured Film
+              </Typography>
+            </Grid>
+            {upNext?.map((movie) => (
+              <FeaturedMovie movie={movie} />
+            ))}
+          </Grid>
+        </Box>
+        <Container sx={{ py: 3 }} maxWidth="lg">
+          <Typography gutterBottom align="center" variant="h6" component="h1">
+            Yes, she has seen these...
+          </Typography>
           <Grid container spacing={4}>
-            {movies?.results?.map((movie) => (
-              <MovieCard movie={movie}/>
+            {movies?.map((movie) => (
+              <MovieCard movie={movie} />
             ))}
           </Grid>
         </Container>
       </main>
       {/* Footer */}
-      <Box sx={{ bgcolor: "background.paper", p: 6 }} component="footer">
-        <Typography variant="h6" align="center" gutterBottom>
+      <Box
+        sx={{
+          bgcolor: "secondary.light",
+          color: "secondary.contrastText",
+          p: 3,
+        }}
+        component="footer"
+      >
+        {/* <Typography variant="h6" align="center" gutterBottom>
           Footer
         </Typography>
         <Typography
@@ -104,7 +145,7 @@ function App() {
           component="p"
         >
           Something here to give the footer a purpose!
-        </Typography>
+        </Typography> */}
         <Copyright />
       </Box>
       {/* End footer */}

@@ -87,9 +87,10 @@ export default function MovieCard(props) {
             pt: "133%",
           }}
           image={imageUrl}
+          aria-label={movie.title}
         />
         </Tooltip>
-        <CardContent sx={{ flexGrow: 1 }}>
+        <CardContent sx={{ flexGrow: 1}}>
           <StyledRating
             name="highlight-selected-only"
             defaultValue={Math.floor(movie.vote_average / 2)}
@@ -98,9 +99,9 @@ export default function MovieCard(props) {
             highlightSelectedOnly
             readOnly
           />
-          {/* <Typography gutterBottom variant="body2" component="h2">
+          <Typography noWrap variant="caption" display="block">
             {movie.title}
-          </Typography> */}
+          </Typography>
           {/* <Typography>
           <StarRateIcon fontSizeInherit htmlColor={'yellow'}/> {movie.vote_average} 
           </Typography> */}

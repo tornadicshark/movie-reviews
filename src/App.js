@@ -84,37 +84,43 @@ function App() {
             p: 7,
           }}
         >
-          <Container maxWidth="sm">
-            <Typography variant="h6" align="center" paragraph>
-              Is it a movie?... Yes... Kassandra has not seen it
-            </Typography>
-            <Typography align="center" paragraph>
-              Are you a movie fan? Well, Kassandra's family has a very simple
-              flow chart when asking if she has seen a movie. Tune back in
-              weekly to see Kassandra's review on the cult classics.
-            </Typography>
-          </Container>
-        </Box>
-        <Box disableGutters sx={{ backgroundColor: "primary.light"}}>
+          {/* <Container > */}
           <Grid
             container
             direction="row"
             justifyContent="center"
             alignContent="center"
-            spacing={4}
+            spacing={6}
             sx={{p: 4}}
+            maxWidth="lg"
           >
-            <Grid item xs={12} sm={6}>
-              <Typography align="right" variant="h4" component="h1">
-                This Week's
-                Featured Film
-              </Typography>
+            <Grid item xs={12} sm={8}>
+            <Typography variant="h7" component="h1" align="center" paragraph>
+              Is it a movie?... Yes... Kassandra has not seen it
+            </Typography>
+            <Typography variant="body1" align="center" paragraph>
+              Are you a movie fan? Well, Kassandra's family has a very simple
+              flow chart when asking if she has seen a movie. Tune back in
+              weekly to see Kassandra's review on the cult classics.
+            </Typography>
             </Grid>
+          {/* </Container> */}
+            <Grid container 
+            direction="row"
+            justifyContent="center"
+            alignContent="flex-start" item xs={12} sm={4}>
+              <Grid item xs={12}>
+              <Typography align="center" variant="h6" component="h1">
+                Currently Watching...
+              </Typography>
+              </Grid>
             {upNext?.map((movie) => (
               <FeaturedMovie movie={movie} />
             ))}
           </Grid>
+          </Grid>
         </Box>
+        <Box disableGutters sx={{ backgroundColor: "primary.light"}}>
         <Container sx={{ py: 3 }} maxWidth="lg">
           <Typography gutterBottom align="center" variant="h6" component="h1">
             Yes, she has seen these...
@@ -125,6 +131,7 @@ function App() {
             ))}
           </Grid>
         </Container>
+        </Box>
       </main>
       {/* Footer */}
       <Box

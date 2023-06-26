@@ -19,8 +19,8 @@ export default function FeaturedMovie(props) {
   }, []);
 
   return (
-    <Grid item key={movie.id} xs={12} sm={6}>
-      <Card sx={{ maxWidth: 225 }} >
+    <Grid item key={movie.id} xs={12} sm={4}>
+      <Card >
         <Tooltip title={movie.title} followCursor>
         <CardMedia
           component="div"

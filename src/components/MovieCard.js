@@ -9,6 +9,8 @@ import {
   Typography,
   Rating,
   Tooltip,
+  Modal,
+  Box
 } from "@mui/material";
 import StarRateIcon from "@mui/icons-material/StarRate";
 
@@ -77,20 +79,21 @@ export default function MovieCard(props) {
           height: "100%",
           display: "flex",
           flexDirection: "column",
-        }}s
+        }}
       >
         <Tooltip title={movie.title}>
-        <CardMedia
-          component="div"
-          sx={{
-            // 16:9
-            pt: "133%",
-          }}
-          image={imageUrl}
-          aria-label={movie.title}
-        />
+          <CardMedia
+            component="div"
+            sx={{
+              // 16:9
+              pt: "133%",
+            }}
+            image={imageUrl}
+            aria-label={movie.title}
+            onClick={() => props.onClick(movie)}
+          />
         </Tooltip>
-        <CardContent sx={{ flexGrow: 1}}>
+        <CardContent sx={{ flexGrow: 1 }}>
           <StyledRating
             name="highlight-selected-only"
             defaultValue={Math.floor(movie.myRating)}

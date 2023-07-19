@@ -1,13 +1,16 @@
 import "./App.css";
 import * as React from "react";
-import AppBar from "@mui/material/AppBar";
 import TheatersIcon from "@mui/icons-material/Theaters";
-import CssBaseline from "@mui/material/CssBaseline";
-import Grid from "@mui/material/Grid";
-import Box from "@mui/material/Box";
-import Toolbar from "@mui/material/Toolbar";
-import Typography from "@mui/material/Typography";
-import Container from "@mui/material/Container";
+import {
+  AppBar,
+  CssBaseline,
+  Grid,
+  Box,
+  Toolbar,
+  Container,
+  Typography,
+  Modal,
+} from "@mui/material";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 
 // import app specific data
@@ -41,6 +44,8 @@ function App() {
   const [genres, setGenres] = React.useState(new Array());
   const [movies, setMovies] = React.useState(new Array());
   const [upNext, setUpNext] = React.useState(new Array());
+  const [isReviewOpen, setIsReviewOpen] = React.useState(false);
+  const [movie, setMovie] = React.useState({});
 
   React.useEffect(() => {
     /* Removed since API key is still pending... says NOT VALID */
@@ -64,6 +69,11 @@ function App() {
     setGenres(data.genres);
     console.log(genres);
   }, []);
+
+  const handleReviewClick = (movie) => {
+    setMovie(movie);
+    setIsReviewOpen(true);
+  };
 
   return (
     <ThemeProvider theme={movieTheme}>
@@ -91,7 +101,8 @@ function App() {
             justifyContent="center"
             alignContent="center"
             spacing={6}
-            item xs={12} 
+            item
+            xs={12}
             maxWidth="lg"
           >
             <Grid item xs={12} sm={8}>
@@ -131,11 +142,28 @@ function App() {
             </Typography>
             <Grid container spacing={4}>
               {movies?.map((movie) => (
-                <MovieCard movie={movie} />
+                <React.Fragment>
+                  <MovieCard movie={movie} onClick={handleReviewClick} />
+                </React.Fragment>
               ))}
             </Grid>
           </Container>
         </Box>
+        <Modal
+          open={isReviewOpen}
+          onClose={() => setIsReviewOpen(false)}
+          aria-labelledby="modal-modal-title"
+          aria-describedby="modal-modal-description"
+        >
+          <Box>
+            <Typography id="modal-modal-title" variant="h6" component="h2">
+              Text in a modal
+            </Typography>
+            <Typography id="modal-modal-description" sx={{ mt: 2 }}>
+              Duis mollis, est non commodo luctus, nisi erat porttitor ligula.
+            </Typography>
+          </Box>
+        </Modal>
       </main>
       {/* Footer */}
       <Box

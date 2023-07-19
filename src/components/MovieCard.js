@@ -93,7 +93,7 @@ export default function MovieCard(props) {
         <CardContent sx={{ flexGrow: 1}}>
           <StyledRating
             name="highlight-selected-only"
-            defaultValue={Math.floor(movie.vote_average / 2)}
+            defaultValue={Math.floor(movie.myRating)}
             IconContainerComponent={IconContainer}
             getLabelText={(value) => customIcons[value].label}
             highlightSelectedOnly

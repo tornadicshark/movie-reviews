@@ -57,9 +57,9 @@ function App() {
       .catch((err) => console.error(err));
 
     const movieData = data.movies.results;
-    setUpNext(movieData?.filter((x) => x.title === "Fake Horrible Movie"));
+    setUpNext(movieData?.filter((x) => !x.myRating));
     console.log(upNext);
-    setMovies(movieData?.filter((x) => x.title != "Fake Horrible Movie"));
+    setMovies(movieData?.filter((x) => x.myRating));
     console.log(movies);
     setGenres(data.genres);
     console.log(genres);
@@ -78,60 +78,63 @@ function App() {
       </AppBar>
       <main>
         {/* Hero unit */}
-        <Box
+        <Container
           sx={{
             // bgcolor: "background.paper",
             backgroundColor: "background.paper",
             p: 7,
           }}
         >
-          {/* <Container > */}
           <Grid
             container
             direction="row"
             justifyContent="center"
             alignContent="center"
             spacing={6}
-            sx={{p: 4}}
+            item xs={12} 
             maxWidth="lg"
           >
             <Grid item xs={12} sm={8}>
-            <Typography variant="h7" component="h1" align="center" paragraph>
-              Is it a movie?... Yes... Kassandra has not seen it
-            </Typography>
-            <Typography variant="body1" align="center" paragraph>
-              Are you a movie fan? Well, Kassandra's family has a very simple
-              flow chart when asking if she has seen a movie. Tune back in
-              weekly to see Kassandra's review on the cult classics.
-            </Typography>
-            </Grid>
-          {/* </Container> */}
-            <Grid container 
-            direction="row"
-            justifyContent="center"
-            alignContent="flex-start" item xs={12} sm={4}>
-              <Grid item xs={12}>
-              <Typography align="center" variant="h6" component="h1">
-                Currently Watching...
+              <Typography variant="h7" component="h1" align="center" paragraph>
+                Is it a movie?... Yes... Kassandra has not seen it
               </Typography>
+              <Typography variant="body1" align="center" paragraph>
+                Are you a movie fan? Well, Kassandra's family has a very simple
+                flow chart when asking if she has seen a movie. Tune back in
+                weekly to see Kassandra's review on the cult classics.
+              </Typography>
+            </Grid>
+            <Grid
+              container
+              direction="row"
+              justifyContent="center"
+              alignContent="flex-start"
+              item
+              xs={12}
+              sm={4}
+            >
+              <Grid item xs={12}>
+                <Typography align="center" variant="h6" component="h1">
+                  Currently Watching...
+                </Typography>
               </Grid>
-            {upNext?.map((movie) => (
-              <FeaturedMovie movie={movie} />
-            ))}
-          </Grid>
-          </Grid>
-        </Box>
-        <Box disableGutters sx={{ backgroundColor: "primary.light"}}>
-        <Container sx={{ py: 3 }} maxWidth="lg">
-          <Typography gutterBottom align="center" variant="h6" component="h1">
-            Yes, she has seen these...
-          </Typography>
-          <Grid container spacing={4}>
-            {movies?.map((movie) => (
-              <MovieCard movie={movie} />
-            ))}
+              {upNext?.map((movie) => (
+                <FeaturedMovie movie={movie} />
+              ))}
+            </Grid>
           </Grid>
         </Container>
+        <Box disableGutters sx={{ backgroundColor: "primary.light" }}>
+          <Container sx={{ py: 3 }} maxWidth="lg">
+            <Typography gutterBottom align="center" variant="h6" component="h1">
+              Yes, she has seen these...
+            </Typography>
+            <Grid container spacing={4}>
+              {movies?.map((movie) => (
+                <MovieCard movie={movie} />
+              ))}
+            </Grid>
+          </Container>
         </Box>
       </main>
       {/* Footer */}

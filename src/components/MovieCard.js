@@ -71,13 +71,13 @@ export default function MovieCard(props) {
   }, []);
 
   return (
-    <Grid item key={movie.id} xs={12} sm={3} md={2}>
+    <Grid item key={movie.id} xs={12} sm={6} md={3} lg={2}>
       <Card
         sx={{
           height: "100%",
           display: "flex",
           flexDirection: "column",
-        }}
+        }}s
       >
         <Tooltip title={movie.title}>
         <CardMedia

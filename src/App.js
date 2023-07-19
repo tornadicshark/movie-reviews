@@ -14,7 +14,8 @@ import { createTheme, ThemeProvider } from "@mui/material/styles";
 import Copyright from "./components/Copyright";
 import MovieCard from "./components/MovieCard";
 import FeaturedMovie from "./components/FeaturedMovie";
-import data from "./data.json";
+import data from "./reviews.json";
+// import data from "./data.json";
 
 import { grey, deepPurple } from "@mui/material/colors";
 

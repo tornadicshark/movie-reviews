@@ -17,6 +17,7 @@ import { createTheme, ThemeProvider } from "@mui/material/styles";
 import Copyright from "./components/Copyright";
 import MovieCard from "./components/MovieCard";
 import FeaturedMovie from "./components/FeaturedMovie";
+import ReviewModal from "./components/ReviewModal";
 import data from "./reviews.json";
 // import data from "./data.json";
 
@@ -39,6 +40,16 @@ const movieTheme = createTheme({
     },
   },
 });
+
+const style = {
+  position: 'absolute',
+  top: '50%',
+  left: '50%',
+  transform: 'translate(-50%, -50%)',
+  width: 1/2,
+  bgcolor: 'background.paper',
+  boxShadow: 24,
+};
 
 function App() {
   const [genres, setGenres] = React.useState(new Array());
@@ -73,6 +84,7 @@ function App() {
   const handleReviewClick = (movie) => {
     setMovie(movie);
     setIsReviewOpen(true);
+    console.log(movie)
   };
 
   return (
@@ -141,9 +153,9 @@ function App() {
               Yes, she has seen these...
             </Typography>
             <Grid container spacing={4}>
-              {movies?.map((movie) => (
+              {movies?.map((m) => (
                 <React.Fragment>
-                  <MovieCard movie={movie} onClick={handleReviewClick} />
+                  <MovieCard movie={m} onClick={handleReviewClick} />
                 </React.Fragment>
               ))}
             </Grid>
@@ -152,39 +164,27 @@ function App() {
         <Modal
           open={isReviewOpen}
           onClose={() => setIsReviewOpen(false)}
-          aria-labelledby="modal-modal-title"
-          aria-describedby="modal-modal-description"
+          // aria-labelledby={`${movie.title}-modal-title`}
+          // aria-describedby={`${movie.title}-modal-description`}
         >
-          <Box>
-            <Typography id="modal-modal-title" variant="h6" component="h2">
-              Text in a modal
-            </Typography>
-            <Typography id="modal-modal-description" sx={{ mt: 2 }}>
-              Duis mollis, est non commodo luctus, nisi erat porttitor ligula.
-            </Typography>
+          <Box sx={style}>
+                <ReviewModal movie={movie}/>
           </Box>
         </Modal>
       </main>
       {/* Footer */}
       <Box
         sx={{
+          position: 'absolute',
+          bottom: '0%',
+          left: '0%',
+          width: '100%',
           bgcolor: "secondary.light",
           color: "secondary.contrastText",
           p: 3,
         }}
         component="footer"
       >
-        {/* <Typography variant="h6" align="center" gutterBottom>
-          Footer
-        </Typography>
-        <Typography
-          variant="subtitle1"
-          align="center"
-          color="text.secondary"
-          component="p"
-        >
-          Something here to give the footer a purpose!
-        </Typography> */}
         <Copyright />
       </Box>
       {/* End footer */}

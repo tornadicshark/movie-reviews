@@ -10,7 +10,7 @@ import {
   Rating,
   Tooltip,
   Modal,
-  Box
+  Box,
 } from "@mui/material";
 import StarRateIcon from "@mui/icons-material/StarRate";
 
@@ -60,7 +60,7 @@ IconContainer.propTypes = {
   value: PropTypes.number.isRequired,
 };
 
-export default function MovieCard(props) {
+export default function ReviewModal(props) {
   const [movie, setMovie] = useState(props.movie);
   const [imageUrl, setImageUrl] = useState(
     `https://source.unsplash.com/random?wallpapers`
@@ -73,14 +73,13 @@ export default function MovieCard(props) {
   }, []);
 
   return (
-    <Grid item key={movie.id} xs={12} sm={6} md={3} lg={2}>
-      <Card
-        sx={{
-          height: "100%",
-          display: "flex",
-          flexDirection: "column",
-        }}
-      >
+    <Grid
+      container
+      key={movie.id}
+      xs={12}
+      sx={{ width: "100%", padding: 0, margin: 0, border: "1px solid red" }}
+    >
+      <Grid item sm={12} lg={6}>
         <Tooltip title={movie.title}>
           <CardMedia
             component="div"
@@ -90,9 +89,30 @@ export default function MovieCard(props) {
             }}
             image={imageUrl}
             aria-label={movie.title}
-            onClick={() => props.onClick(movie)}
           />
         </Tooltip>
+      </Grid>
+      <Grid item sm={12}  lg={6} sx={{ textAlign: "center", p:2 }}>
+        {/*         
+      <Typography noWrap variant="h" display="block">
+            {movie.title}
+          </Typography> */}
+        {/* <Typography noWrap variant="h6" component="h1" display="block">
+          Overview
+        </Typography>
+
+        <Typography
+          variant="body1"
+          component="p"
+          display="block"
+          sx={{ textAlign: "left" }}
+        >
+          {movie.overview}
+        </Typography> */}
+
+        <Typography noWrap variant="h6" component="h1" display="block" sx={{}}>
+          My Rating
+        </Typography>
         <CardContent sx={{ flexGrow: 1 }}>
           <StyledRating
             name="highlight-selected-only"
@@ -102,20 +122,17 @@ export default function MovieCard(props) {
             highlightSelectedOnly
             readOnly
           />
-          <Typography noWrap variant="caption" display="block">
-            {movie.title}
-          </Typography>
-          {/* <Typography>
-          <StarRateIcon fontSizeInherit htmlColor={'yellow'}/> {movie.vote_average} 
-          </Typography> */}
-          {/* <Rating name="half-rating-read" defaultValue={movie.vote_average} precision={.5} max={10} readOnly /> */}
-          {/* <Typography>{movie.overview}</Typography> */}
         </CardContent>
-        {/* <CardActions>
-          <Button size="small">View</Button>
-          <Button size="small">Edit</Button>
-        </CardActions> */}
-      </Card>
+
+<Typography
+  variant="body1"
+  component="p"
+  display="block"
+  sx={{ textAlign: "left" }}
+>
+  {movie.commentary}
+</Typography>
+      </Grid>
     </Grid>
   );
 }

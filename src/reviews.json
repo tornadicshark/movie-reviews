@@ -1,0 +1,104 @@
+{"movies":{
+    "page": 1,
+    "results": [
+      {
+        "rating": "R",
+        "genres": [
+          "Drama",
+          "History"
+        ],
+        "overview": "The story of J. Robert Oppenheimer’s role in the development of the atomic bomb during World War II.",
+        "poster_path": "/8Gxv8gSFCU0XGDykEGv7zR1n2ua.jpg",
+        "release_date": "2023-07-21",
+        "title": "Oppenheimer",
+        "runtime": 181
+      },
+      {
+        "rating": "PG-13",
+        "genres": [
+          "Comedy",
+          "Romance",
+          "Science Fiction"
+        ],
+        "overview": "In an American desert town circa 1955, the itinerary of a Junior Stargazer/Space Cadet convention is spectacularly disrupted by world-changing events.",
+        "poster_path": "/tcKBclNUdkas4Jis8RYYZnPdTIm.jpg",
+        "release_date": "2023-06-16",
+        "title": "Asteroid City",
+        "runtime": 105,
+        "commentary":"What? That describes it pretty well. Beautiful art, but what is the story? Too big for my untrained film brain. They say you can't wake up if you don't fall asleep. Well, I woke up several times during this movie.",
+        "myRating": 3.5
+      },
+      {
+        "rating": "PG",
+        "genres": [
+          "Adventure",
+          "Action"
+        ],
+        "overview": "When Dr. Indiana Jones – the tweed-suited professor who just happens to be a celebrated archaeologist – is hired by the government to locate the legendary Ark of the Covenant, he finds himself up against the entire Nazi regime.",
+        "poster_path": "/ceG9VzoRAVGwivFU403Wc3AHRys.jpg",
+        "release_date": "1981-06-12",
+        "title": "Indiana Jones and the Raiders of the Lost Ark",
+        "runtime": 115,
+        "commentary":"Wow, religion is weird.",
+        "myRating": 4
+      },
+      {
+        "rating": "PG",
+        "genres": [
+          "Adventure",
+          "Action"
+        ],
+        "overview": "After arriving in India, Indiana Jones is asked by a desperate village to find a mystical stone. He agrees – and stumbles upon a secret cult plotting a terrible plan in the catacombs of an ancient palace.",
+        "poster_path": "/t7Pv44sBcxhc47kNNDDafNAgr7Y.jpg",
+        "release_date": "1984-05-23",
+        "title": "Indiana Jones and the Temple of Doom",
+        "runtime": 118,
+        "commentary":"Wow, religion is weird.",
+        "myRating": 3
+      },
+      {
+        "rating": "PG-13",
+        "genres": [
+          "Adventure",
+          "Action"
+        ],
+        "overview": "In 1938, an art collector appeals to eminent archaeologist Dr. Indiana Jones to embark on a search for the Holy Grail. Indy learns that a medieval historian has vanished while searching for it, and the missing man is his own father, Dr. Henry Jones Sr.. He sets out to rescue his father by following clues in the old man's notebook, which his father had mailed to him before he went missing. Indy arrives in Venice, where he enlists the help of a beautiful academic, Dr. Elsa Schneider, along with Marcus Brody and Sallah. Together they must stop the Nazis from recovering the power of eternal life and taking over the world!",
+        "poster_path": "/npUCnxl1fqgt3aQiMQq0iJdZMZp.jpg",
+        "release_date": "1989-05-24",
+        "title": "Indiana Jones and the Last Crusade",
+        "runtime": 127,
+        "commentary":"Wow, religion is weird.",
+        "myRating": 5
+      },
+      {
+        "rating": "PG-13",
+        "genres": [
+          "Adventure",
+          "Action"
+        ],
+        "overview": "Set during the Cold War, the Soviets—led by sword-wielding Irina Spalko—are in search of a crystal skull which has supernatural powers related to a mystical Lost City of Gold. Indy is coerced to head to Peru at the behest of a young man whose friend—and Indy's colleague—Professor Oxley has been captured for his knowledge of the skull's whereabouts.",
+        "poster_path": "/56As6XEM1flWvprX4LgkPl8ii4K.jpg",
+        "release_date": "2008-05-22",
+        "title": "Indiana Jones and the Kingdom of the Crystal Skull",
+        "runtime": 122,
+        "commentary":"Wow, aliens are weird.",
+        "myRating": 5
+      },
+      {
+        "rating": "PG-13",
+        "genres": [
+          "Adventure",
+          "Action",
+          "Fantasy"
+        ],
+        "overview": "Finding himself in a new era, approaching retirement, Indy wrestles with fitting into a world that seems to have outgrown him. But as the tentacles of an all-too-familiar evil return in the form of an old rival, Indy must don his hat and pick up his whip once more to make sure an ancient and powerful artifact doesn't fall into the wrong hands.",
+        "poster_path": "/Af4bXE63pVsb2FtbW8uYIyPBadD.jpg",
+        "release_date": "2023-06-30",
+        "title": "Indiana Jones and the Dial of Destiny",
+        "runtime": 155,
+        "commentary":"Wow, time travel is weird.",
+        "myRating": 5
+      }
+    ]
+  }
+}

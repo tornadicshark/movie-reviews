@@ -117,9 +117,12 @@ function App() {
             xs={12}
             maxWidth="lg"
           >
-            <Grid item xs={12} sm={8}>
+            <Grid item xs={12} sm={6}>
               <Typography variant="h7" component="h1" align="center" paragraph>
-                Is it a movie?... Yes... Kassandra has not seen it
+                Is it a movie?... Yes...
+              </Typography>
+              <Typography variant="h7" component="h1" align="center" paragraph>
+                Kassandra has not seen it
               </Typography>
               <Typography variant="body1" align="center" paragraph>
                 Are you a movie fan? Well, Kassandra's family has a very simple
@@ -175,10 +178,10 @@ function App() {
       {/* Footer */}
       <Box
         sx={{
-          position: 'absolute',
-          bottom: '0%',
-          left: '0%',
-          width: '100%',
+          // position: 'absolute',
+          // bottom: '0%',
+          // left: '0%',
+          // width: '100%',
           bgcolor: "secondary.light",
           color: "secondary.contrastText",
           p: 3,
